@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 // Style
 import classes from "./App.module.css";
@@ -7,6 +7,9 @@ import classes from "./App.module.css";
 import Header from "./components/Layout/Header/Header";
 import Meals from "./components/Meals - component/Meals/Meals";
 import Cart from "./components/Cart/Cart";
+
+// Context
+import CartProvider from "./store/CartProvider";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -21,7 +24,7 @@ function App() {
 
   return (
     <div className={classes.mainApp}>
-      <Fragment>
+      <CartProvider>
         {/* will render a Cart if cartIsShown is truthy and not render it when its falsy */}
         {cartIsShown && <Cart onClose={hideCartHandler} />}
 
@@ -30,7 +33,7 @@ function App() {
         <main>
           <Meals />
         </main>
-      </Fragment>
+      </CartProvider>
     </div>
   );
 }
