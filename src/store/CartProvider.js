@@ -1,6 +1,6 @@
 // The goal of this component is to manage the current context data and provide that context to all components that want access to it
 
-// useState and useReducer work here, but since its a little bit of a complex logic, I will use useReducer to manage the state here
+// useState and useReducer work here, but since its a little bit of a complex state (checking wether a meal is already part of the Cart and for removing), I will use useReducer to manage the state here
 import { useReducer } from "react";
 
 import CartContext from "./cart-context";
@@ -8,7 +8,7 @@ import CartContext from "./cart-context";
 // Default cart state
 const defaultCartState = {
   items: [],
-  amount: 0,
+  totalAmount: 0,
 };
 
 /*
