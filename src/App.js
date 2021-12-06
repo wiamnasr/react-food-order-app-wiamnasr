@@ -24,6 +24,7 @@ function App() {
 
   return (
     <div className={classes.mainApp}>
+      {/* using a separate CartProvider component to keep it lean */}
       <CartProvider>
         {/* will render a Cart if cartIsShown is truthy and not render it when its falsy */}
         {cartIsShown && <Cart onClose={hideCartHandler} />}
