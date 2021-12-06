@@ -22,13 +22,40 @@ const cartReducer = (state, action) => {
   // I only want to add this adding logic for this kind of action
   if (action.type === "ADD") {
     // I want to group items of the same meal together and manage the amount on a per meal basis, also want to update the total price of all aggregated cart items
-
-    // Adding item to the array, created one equal to the items in the current state snapshot, which I get as a first argument in the Reducer by React, and call concat on it to add the new item to array, returning a new array without editing the existing one (being immutable in updating the state is important due to the ref value in javascript, meaning existing data in memory gets edited without react knowing about it)
-    const updatedItems = state.items.concat(action.item);
-
     // updated total amount
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
+
+    // Checking if an item is already a part of the Cart, using findIndex(), a built in method in JS that finds an index of an item in an array
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+
+    // Getting the existing cart item, will only work if we have the item already otherwise, existingCardItem will be null
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    // 2 variables for updated item and updated items
+    let updatedItems;
+
+    // if existingCartItem is truthy (only the case if its already part of the array)
+    if (existingCartItem) {
+      // updatedItem is set to equal an object where I copy the existingCartItem and update the amount
+      const updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount + action.item.amount,
+      };
+
+      // updatedItems is now equal to a new array where I copy in the existing items (so I update it immutably without editing the old array in memory)
+      // hence a new aray is being created where I copy the old objects
+      updatedItems = [...state.items];
+      // and then for that existingCartItemIndex, I overwrite this with the updated item
+      updatedItems[existingCartItemIndex] = updatedItem;
+    } else {
+      // If an item is added for the first time in the array
+
+      // Adding item to the array, created one equal to the items in the current state snapshot, which I get as a first argument in the Reducer by React, and call concat on it to add the new item to array, returning a new array without editing the existing one (being immutable in updating the state is important due to the ref value in javascript, meaning existing data in memory gets edited without react knowing about it)
+      updatedItems = state.items.concat(action.item);
+    }
 
     // returning the new state snapshot
     return {

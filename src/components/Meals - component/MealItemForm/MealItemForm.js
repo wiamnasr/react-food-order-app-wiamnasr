@@ -9,7 +9,7 @@ import Input from "../../UI/Input/Input";
 
 const MealItemForm = (props) => {
   // controlling whether this form is valid or not
-  const [amountIsValid, setAmountIsValid] = useState(false);
+  const [amountIsValid, setAmountIsValid] = useState(true);
 
   const amountInputRef = useRef();
 
@@ -32,7 +32,7 @@ const MealItemForm = (props) => {
     }
 
     // executing my context method to add a cart item, by calling a function that I expect to get on props
-    // Not done in this component as the cartItem that I want to add, needs more data than just the enteredAmount, in this MealitemForm, we only have the amount (no id, name or price)
+    // Not done in this component as the cartItem that I want to add, needs more data than just the enteredAmount, in this MealItemForm, we only have the amount (no id, name or price)
     // That's why I'm not calling the context method here but calling a function I'm expecting to get through props to pass the entered and validated amount number to that function
     // This function is defined in the MealItem component
     props.onAddToCart(enteredAmountNumber);
@@ -47,7 +47,7 @@ const MealItemForm = (props) => {
         label='Amount'
         // default props that can be added to any input element
         input={{
-          id: "amount",
+          id: "amount_"+ props.id,
           type: "number",
           min: "1",
           max: "5",

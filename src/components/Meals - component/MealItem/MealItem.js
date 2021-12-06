@@ -14,6 +14,7 @@ const MealItem = (props) => {
   // establishing a connection to CartContext to use it here
   const cartCtx = useContext(CartContext);
 
+  // formatting the price first
   const price = `£${props.price.toFixed(2)}`;
 
   // adding an item to cart, here I will get the validated amount as a parameter from MealItemForm

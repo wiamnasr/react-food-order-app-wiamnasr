@@ -29,7 +29,7 @@ function App() {
         {/* will render a Cart if cartIsShown is truthy and not render it when its falsy */}
         {cartIsShown && <Cart onClose={hideCartHandler} />}
 
-        {/* showCardHandler should be called whenever a button in the Header is clicked, should probably expect to get that showCardHandler called from inside the Header */}
+        {/* showCardHandler should be called whenever a button in the Header is clicked, should probably expect to get tha</divt showCardHandler called from inside the Header */}
         <Header onShowCart={showCartHandler} />
         <main>
           <Meals />

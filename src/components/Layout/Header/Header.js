@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 // Meals Image
-import mealsImage from "../../../../src/assets/meals.jpg";
+import mealsImage from "../../../assets/meals.jpg";
 
 // Style
 import classes from "./Header.module.css";

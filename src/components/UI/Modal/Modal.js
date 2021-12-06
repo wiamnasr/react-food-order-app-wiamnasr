@@ -9,7 +9,7 @@ import ReactDOM from "react-dom";
 // in the public folder, in the index.html file above the root div, added another div with an id of overlays, I want to portal my Modal and backdrop to that div
 
 const Backdrop = (props) => {
-  return <div className={classes.backdrop} onClick={props.onClose}></div>;
+  return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
 const ModalOverlay = (props) => {
@@ -26,6 +26,7 @@ const Modal = (props) => {
   return (
     //   I need backdrop and overlay side by side, for that importing Fragment from React
     <Fragment>
+      {/* using a portal to make sure that my html is not all over the place in the end app */}
       {ReactDOM.createPortal(
         <Backdrop onClose={props.onClose} />,
         portalElement
